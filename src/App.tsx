@@ -8,3 +8,5 @@ function App() {
 }
 
 export default App
+
+//graphCMS clone repository: https://rseat.in/lab-graphcms
