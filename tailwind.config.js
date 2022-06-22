@@ -9,7 +9,7 @@ module.exports = {
         sans: 'Roboto, sans-serif',
       },
       colors:{
-        gree: {
+        green: {
           300:'#00B37E',
           500:'#00875F',
           700:'#015F43',
