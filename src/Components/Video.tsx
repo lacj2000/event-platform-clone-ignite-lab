@@ -34,11 +34,13 @@ interface GetLessonBySlugResponse {
 }
 
 export function Video() {
-  const { slug } = useParams<{slug:string}>();
+  const { slug: selectedSlug } = useParams<{slug:string}>();
+   
   const { data } = useQuery<GetLessonBySlugResponse>(GET_LESSON_BY_SLUG_QUERY,{
     variables: {
-      slug:slug,
-    }
+      slug:selectedSlug,
+    },
+    fetchPolicy: "no-cache",
   });
 
   if (!data){
@@ -55,7 +57,7 @@ export function Video() {
         {/*  video player */}
         <div className="h-full w-full max-w-[1100px] max-h-[68vh] aspect-video">
           <Player >
-            <Youtube videoId={data?.lesson.videoId} />
+            <Youtube videoId={data.lesson.videoId} />
             <DefaultUi />
           </Player>
         </div>
