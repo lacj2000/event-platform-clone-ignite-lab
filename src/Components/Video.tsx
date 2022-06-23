@@ -1,19 +1,61 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import { ArrowRight, DiscordLogo, FileArrowDown, Image, Lightning } from "phosphor-react";
-
+import { useParams } from "react-router-dom";  
 // Default theme. ~960B
 import '@vime/core/themes/default.css';
+import { gql, useQuery } from "@apollo/client";
 
+const GET_LESSON_BY_SLUG_QUERY = gql`
+  query getLessonBySlug($slug: String!) {
+  lesson(where: {slug: $slug}) {
+    description
+    title
+    videoId
+    teacher {
+      avatarURL
+      bio
+      name
+    }
+  }
+}
+` 
 
+interface GetLessonBySlugResponse {
+  lesson:{
+    description: string;
+    title: string;
+    videoId: string;
+    teacher: {
+      avatarURL: string;
+      bio: string;
+      name: string;
+    }
+  }
+}
 
 export function Video() {
+  const { slug } = useParams<{slug:string}>();
+  const { data } = useQuery<GetLessonBySlugResponse>(GET_LESSON_BY_SLUG_QUERY,{
+    variables: {
+      slug:slug,
+    }
+  });
+
+  if (!data){
+    return (
+      <div className="flex-1">
+        <p>loading...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1">
       <div className="bg-black flex justify-center ">
         {/*  video player */}
         <div className="h-full w-full max-w-[1100px] max-h-[68vh] aspect-video">
           <Player >
-            <Youtube videoId="Ox_zb2cs9zM" />
+            <Youtube videoId={data?.lesson.videoId} />
             <DefaultUi />
           </Player>
         </div>
@@ -25,31 +67,31 @@ export function Video() {
           <div className="flex-1">
             {/*  title */}
             <h1 className="text-2xl font-bold">
-              Abertura do Evento Fictício
+              {data?.lesson.title}
             </h1>
             {/*  describes */}
             <p className="mt-4 text-gray-200 leading-relaxed">
-              Essa é a aula 02 de um evento fictício
+              {data?.lesson.description}
             </p>
 
             {/* profile */}
             <div className="flex items-center gap-4 mt-6">
               <img 
                className="h-16 w-16 rounded-full border-2 border-blue-500"
-               src="https://github.com/lacj2000.png" 
-               alt="" 
+               src={data?.lesson.teacher.avatarURL} 
+               alt={data?.lesson.teacher.name} 
               />
 
               <div className="leading-relaxed">
                 <strong
                  className="font-bold text-2xl block"
                  > 
-                  Luiz Junior
+                  {data?.lesson.teacher.name}
                 </strong>
                 <span
                  className="text-gray-200 text-sm block"
                 >
-                  Web Developer e Student
+                  {data?.lesson.teacher.bio}
                 </span>
               </div>
             </div>

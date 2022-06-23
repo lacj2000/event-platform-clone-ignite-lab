@@ -1,6 +1,7 @@
 import { CheckCircle, LockKey } from 'phosphor-react';
 import { format, isPast } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { Link } from 'react-router-dom';
 
 
 interface LessonProps {
@@ -19,13 +20,13 @@ export function Lesson(props: LessonProps) {
   const isLessonAvailable = isPast(props.availableAt);
   
   return (
-    <a href="#">
+    <Link to={`/event/lesson/${props.slug}`} className="group">
       
       <span className="text-gray-300">
         {availableDataFormated[0].toUpperCase()+availableDataFormated.slice(1)}
       </span>
       
-      <div className="rounded border border-gray-600 p-4 gap-4 mt-2">
+      <div className="rounded border border-gray-600 p-4 gap-4 mt-2 group-hover:border-green-300">
         <header className="flex items-center justify-between">  
           {isLessonAvailable?(
             <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
@@ -41,7 +42,7 @@ export function Lesson(props: LessonProps) {
           
           
           {props.type === 'live'? (
-            <span className="text-xs rounded py-[0.125rem] px-2  border border-green-300 p-[1px] text-green-300">
+            <span className="text-xs rounded py-[0.125rem] px-2  border border-green-300 p-[1px] text-white">
               AO VIVO
             </span>
           ) : (
@@ -55,6 +56,6 @@ export function Lesson(props: LessonProps) {
           {props.title}
         </strong>
       </div>
-    </a>
+    </Link>
   )
 } 
