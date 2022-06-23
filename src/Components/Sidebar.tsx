@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { useParams, Navigate } from "react-router-dom";
 import { Lesson } from "./Lesson";
 
 const GET_LESSONS_QUERY = gql`
@@ -26,7 +27,15 @@ interface GetLessonsQueryResponse {
 
 export function Sidebar() {
   const { data } = useQuery<GetLessonsQueryResponse>(GET_LESSONS_QUERY);
- 
+  const { slug: selectedSlug } = useParams<{slug : string}>(); 
+
+  if (!selectedSlug && !!data){
+    console.log(`redirecting to /event/lesson/${data.lessons[0].slug}` )
+    return (
+      <Navigate to={`/event/lesson/${data.lessons[0].slug}`} />
+    );
+  }
+
   return (
     <aside className="w-[348px] bg-gray-700 p-6 border-l border-gray-600">
       <span className="font-bold text-2xl pb-6 mb-6 border-b border-gray-500 block">
