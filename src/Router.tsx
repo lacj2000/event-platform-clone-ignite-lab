@@ -7,10 +7,10 @@ export function Router(){
     <Routes>
       <Route path="/event/lesson/:slug" element={<Event />}/>
       <Route path="/event" element={<Event />}/>
-      <Route path="/" element={<Subscribe />}/>
+      <Route path="/subscribe" element={<Subscribe />}/>
       <Route
         path="*"
-        element={<Navigate to="/home" />}
+        element={<Navigate to="/subscribe" />}
       />
     </Routes>
   );
