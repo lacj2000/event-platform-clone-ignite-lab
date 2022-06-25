@@ -24,17 +24,19 @@ export function Subscribe() {
   
   const formSubmit = (event:FormEvent) => {
     event.preventDefault();
-    
-    createSubscriber({
-      variables: {
-        name,
-        email,
-      }
-    });
-
-    navigate('/event');
-
+    if(!!email&&!!name){
+      
+      createSubscriber({
+        variables: {
+          name,
+          email,
+        }
+      });
+      navigate('/event');
+    }
   }
+
+
 
   return (
     <div className='min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center' >
