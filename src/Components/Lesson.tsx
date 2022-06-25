@@ -15,9 +15,11 @@ interface LessonProps {
 export function Lesson(props: LessonProps) {
   const { slug: selectedSlug } = useParams<{slug : string}>();
   
-  const availableDataFormated = format(props.availableAt,"EEEE' • 'd' de 'LLLL' • 'kk'h'mm", {
+  let availableDataFormated = format(props.availableAt,"EEEE' • 'd' de 'LLLL' • 'kk'h'mm", {
     locale:ptBR,
   });
+  availableDataFormated = availableDataFormated[0].toUpperCase() + availableDataFormated.substring(1);
+
   const isLessonAvailable = isPast(props.availableAt);
   
   const isSelectedSlug = selectedSlug === props.slug;
