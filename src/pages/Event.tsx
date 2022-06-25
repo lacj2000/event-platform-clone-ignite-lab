@@ -13,7 +13,7 @@ export function Event() {
       <Header />
       <main className="flex flex-1">
         {selectedSlug?(
-          <Video />
+          <Video selectedSlug={selectedSlug} />
         ):(
           <div className="flex-1"/>
         )}
