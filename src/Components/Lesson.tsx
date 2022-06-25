@@ -29,7 +29,7 @@ export function Lesson(props: LessonProps) {
      to={`${isLessonAvailable ? `/event/lesson/${props.slug}`:""}`} 
      className={`group`} 
     >
-      <div className={`${isSelectedSlug ?"relative  right-[7.5px] top-[81px] rotate-45 h-[15px] w-[15px] bg-green-300": "bg-transparent " } transition-colors`} ></div>
+      <div className={`${isSelectedSlug ?"relative  right-[7.5px] top-[85px] rotate-45 h-[15px] w-[15px] bg-green-300": "bg-transparent " } transition-colors`} ></div>
       <span className="text-gray-300" >
         {availableDataFormated}
       </span>
