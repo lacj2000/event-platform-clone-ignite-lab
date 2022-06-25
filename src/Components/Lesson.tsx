@@ -67,7 +67,7 @@ export function Lesson(props: LessonProps) {
             }
           </span>
         </header>
-        <strong className={`mt-4 text-gray-200 ${isSelectedSlug&&"text-white"} block`}>
+        <strong className={`mt-4  ${isSelectedSlug?"text-white":"text-gray-200"} block`}>
           {props.title}
         </strong>
       </div>
