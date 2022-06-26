@@ -7,6 +7,10 @@
     {
       "source": "/subscribe",
       "destination": "/"
+    },
+    {
+      "source":"/event/lesson/*",
+      "destination": "/"
     }
   ]
 }
