@@ -2,11 +2,11 @@
   "redirects": [
     {
       "source": "/subscribe",
-      "destination": "/"
+      "destination": "/subscribe"
     },
     {
       "source": "/event",
-      "destination": "/"
+      "destination": "/event"
     }
   ]
 }
