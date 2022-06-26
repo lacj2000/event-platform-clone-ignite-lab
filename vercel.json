@@ -1,15 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/event",
-      "destination": "/"
-    },
-    {
-      "source": "/subscribe",
-      "destination": "/"
-    },
-    {
-      "source":"/event/lesson/*",
+      "source":"/:path*",
       "destination": "/"
     }
   ]
