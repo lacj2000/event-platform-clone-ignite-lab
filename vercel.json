@@ -1,12 +1,12 @@
 {
-  "redirects": [
-    {
-      "source": "/subscribe",
-      "destination": "/subscribe"
-    },
+  "rewrites": [
     {
       "source": "/event",
       "destination": "/event"
+    },
+    {
+      "source": "/subscribe",
+      "destination": "/"
     }
   ]
 }
