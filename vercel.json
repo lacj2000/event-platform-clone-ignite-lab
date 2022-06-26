@@ -4,6 +4,11 @@
       "source": "/subscribe",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/event",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
